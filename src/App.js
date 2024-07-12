@@ -27,6 +27,9 @@ function App() {
     console.log(lastName);
     console.log(email);
     console.log(contact);
+    console.log(resume);
+    console.log(url);
+    console.log(about);
   };
   const handleSubjectChange = (sub) => {
     setSubjects((prev) => ({
