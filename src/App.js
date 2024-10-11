@@ -1,5 +1,7 @@
 import "./App.css";
 import { React, useState } from "react";
+import axios from "axios";
+
 function App() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -21,8 +23,27 @@ function App() {
     setContact("");
     setEmail("");
   };
+
+  const API_URL = "http://localhost:8080/employees/addEmp";
+
+  const addData = async (url, data) => {
+    try {
+      const response = await axios.post(url, data);
+      console.log("Data sent succesfully to database", response.data);
+    } catch (err) {
+      console.log("Error sending data", err);
+    }
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
+    const myData = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      contact: contact,
+    };
+    addData(API_URL, myData);
+
     console.log(firstName);
     console.log(lastName);
     console.log(email);
